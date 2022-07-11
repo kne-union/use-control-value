@@ -6,16 +6,16 @@
 
 import React, {useState, useRef} from 'react';
 
-export default (props, map = {defaultValue: 'defaultValue', value: 'value'}) => {
-  const isControl = useRef(map['value'] in props),
-    [stateValue, setStateValue] = useState(props[map['defaultValue']]);
-  return [
-    isControl.current ? props[map['value']] : stateValue,
-    (newValue, ...others) => {
-      props.onChange && props.onChange(newValue, ...others);
-      if (!isControl.current) {
-        setStateValue(newValue);
-      }
-    }
-  ];
+export default (props, map = {defaultValue: 'defaultValue', value: 'value', onChange: 'onChange'}) => {
+    const isControl = useRef(map['value'] in props),
+        [stateValue, setStateValue] = useState(props[map['defaultValue']]);
+    return [
+        isControl.current ? props[map['value']] : stateValue,
+        (newValue, ...others) => {
+            props[map['onChange']] && props[map['onChange']](newValue, ...others);
+            if (!isControl.current) {
+                setStateValue(newValue);
+            }
+        }
+    ];
 };
