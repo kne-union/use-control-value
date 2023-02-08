@@ -1,6 +1,6 @@
 {
   "name": "@kne/use-control-value",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "实现了同时支持受控和非受控组件状态管理的hooks",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
