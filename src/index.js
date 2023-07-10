@@ -1,6 +1,7 @@
 import React, {useState, useRef} from "react";
 
-export default (props, map = {defaultValue: "defaultValue", value: "value", onChange: "onChange"}) => {
+export default (props, map) => {
+    map = Object.assign({}, {defaultValue: "defaultValue", value: "value", onChange: "onChange"}, map);
     const isControl = useRef(map["value"] in props), [stateValue, setStateValue] = useState(props[map["defaultValue"]]);
     const currentValueRef = useRef(null);
     currentValueRef.current = isControl.current ? props[map["value"]] : stateValue;
